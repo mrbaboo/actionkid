@@ -21,14 +21,17 @@ executable actionkid
                        mtl,
                        template-haskell,
                        containers,
-                       OpenGL
-  hs-source-dirs:      src
-  main-is: Main.hs
-  ghc-options: -rtsopts -threaded "-with-rtsopts=-M500m -N"
+                       OpenGL,
+                       ActionKid
+  hs-source-dirs:      exe
+  main-is:             Main.hs
+  ghc-options:         -rtsopts -threaded "-with-rtsopts=-M500m -N"
 
 Test-Suite test-actionkid
-  type:       exitcode-stdio-1.0
-  build-depends:       base, hspec, ActionKid
+  type:                exitcode-stdio-1.0
+  build-depends:       base,
+                       hspec,
+                       ActionKid
   hs-source-dirs:      spec
   main-is:             Main.hs
 
@@ -45,4 +48,3 @@ library
   exposed-modules:     ActionKid, ActionKid.Types, ActionKid.Core, ActionKid.Utils
   hs-source-dirs:      src
   Other-modules:       ActionKid.Internal, ActionKid.Globals
-  ghc-options: -rtsopts -threaded "-with-rtsopts=-M500m -N"
