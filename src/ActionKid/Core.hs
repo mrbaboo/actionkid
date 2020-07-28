@@ -26,7 +26,7 @@ import Control.Monad
 import Control.Monad.Fix
 import Control.Concurrent
 import Foreign.ForeignPtr
-import Graphics.Rendering.OpenGL.GL.StateVar
+import Data.StateVar
 
 -- | (Currently disabled) Given a path to an audio file, plays the file.
 playSound :: String -> Bool -> IO ()
@@ -75,8 +75,9 @@ image src = unsafePerformIO $ do
     pic_ <- loadJuicy src
     case pic_ of
       Nothing -> error $ "didn't find an image at " ++ src
-      Just pic@(Bitmap w h _ _) -> do
-        let x = fromIntegral w / 2
+      Just pic@(Bitmap b) -> do
+        let (w, h) = bitmapSize b
+            x = fromIntegral w / 2
             y = fromIntegral h / 2
             newPic = translate x y pic
         cache <- readIORef imageCache
@@ -121,7 +122,7 @@ image src = unsafePerformIO $ do
 -- https:\/\/gist.github.com\/egonSchiele\/e692421048cbd79acb26
 deriveMC :: Name -> Q [Dec]
 deriveMC name = do
-    TyConI (DataD _ _ _ records _) <- reify name
+    TyConI (DataD _ _ _ _ records _) <- reify name
 
     -- The following answers helped a lot:
     -- http://stackoverflow.com/questions/8469044/template-haskell-with-record-field-name-as-variable
