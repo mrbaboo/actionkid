@@ -1,5 +1,5 @@
 name:                ActionKid
-version:             0.1.1.0
+version:             0.1.1.1
 synopsis:            An easy-to-use video game framework for Haskell.
 description:         See examples and full readme on the Github page: https:\/\/github.com\/egonSchiele\/actionkid
 homepage:            https://github.com/egonSchiele/actionkid
