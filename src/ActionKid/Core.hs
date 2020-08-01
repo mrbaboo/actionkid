@@ -202,8 +202,8 @@ hits a b = f a `intersects` f b
 -- 5. a function that keeps getting called in a loop (the main game loop)
 run :: (MovieClip a, Renderable a) => String -> (Int, Int) -> a -> (Event -> StateT a IO ()) -> (Float -> StateT a IO ()) -> IO ()
 run title (w,h) state keyHandler stepFunc = do
-  let boardWidth =  setRef w
-  let boardHeight = setRef h
+  writeIORef boardWidth w
+  writeIORef boardHeight h
   playIO
     (InWindow title (w,h) (1, 1))
     white

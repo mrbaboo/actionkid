@@ -3,3 +3,4 @@ dist/*
 tags
 cabal.sandbox.config
 *.iml
+out/*
